@@ -93,9 +93,12 @@ def resolve_data_quality_issues(results, goalscorers, shootouts):
     goalscorers.drop_duplicates(subset=None, keep='first', inplace=True)
     shootouts.drop_duplicates(subset=None, keep='first', inplace=True)
     # We can replace null values with a set string indicating that they were not recorded.
+    results.fillna("Not Recorded", inplace=True)
     goalscorers.fillna("Not Recorded", inplace=True)
+    shootouts.fillna("Not Recorded", inplace=True)
     # There are many methods we can use to fill null values for quantative fields such as mean, median etc. However the method we choose 
     # depends on the data/column we are working with as one method may be more sensible.
+    # we can also simply drop the rows with quality issues using: df.dropna(inplace = True)
     print("\nQ7 - Resolved data quality issues.")
 
 if __name__ == "__main__":
